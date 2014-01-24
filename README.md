@@ -1,3 +1,4 @@
+
 #Python SDK Instructions#
 
 1.These instructions assume you are using Django. Once you’ve downloaded the SDK, unzip it. The unzipped folder will be called snowshoe. Inside snowshoe, open api, then python, then sssapi. Here you will see __init__.py You can drop the sssapi folder containing __init__.py into your codebase as its own app, so go ahead and do that to get started.
@@ -29,3 +30,4 @@ def callback(request):
  return render_to_response(“authorized_page.html”, 
  {},
  RequestContext(request, {}))
+
