@@ -2,7 +2,7 @@ import requests
 from requests_oauthlib  import OAuth1
 
 class Client(object):
-    BASE_URL = "http://beta.snowshoestamp.com/api/v2/"
+    BASE_URL = "https://beta.snowshoestamp.com/api/v2/"
     app_key = None
     app_secret = None
 
