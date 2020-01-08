@@ -1,26 +1,18 @@
 import requests
-from requests_oauthlib  import OAuth1
 
 class Client(object):
-    BASE_URL = "https://beta.snowshoestamp.com/api/v2/"
-    app_key = None
-    app_secret = None
+    BASE_URL = "https://ss-dev-api-stamp.azurewebsites.net/v3/"
+    api_key = None
 
-    def __init__(self, app_key=None, app_secret=None):
-        self.app_key = app_key
-        self.app_secret = app_secret
+    def __init__(self, api_key=None):
+        self.api_key = api_key
     
     def get_api_url(self, method):
         return "%s%s" % (self.BASE_URL, method)
-
-    def get_auth(self):
-        return OAuth1(self.app_key, self.app_secret,
-                      signature_type='auth_header')
-    auth = property(get_auth, )
     
     def call(self, data_dict=None, method="stamp"):
         response = requests.post(self.get_api_url(method=method), 
-                                 data=data_dict, auth=self.auth)
+                                 data=data_dict, headers={"SnowShoe-Api-Key":self.api_key, "Accept-Encoding":"identity"})
         
         if response.status_code >= 500:
             return {"error": "Server error while contacting %s. Data: %s" % (
